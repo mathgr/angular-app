@@ -2,19 +2,19 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Carnet de recettes</a>
+        <a class="navbar-brand" routerLink="/">Carnet de recettes</a>
       </div>
       <div class="collpase navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#" (click)="onSelect('recipes')">Recettes</a></li>
-          <li><a href="#" (click)="onSelect('list')">Liste</a></li>
+          <li routerLinkActive="active"><a routerLink="/recipes">Recettes</a></li>
+          <li routerLinkActive="active"><a routerLink="/shopping-list">Liste</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown" appDropdown>
-            <a href="#" class="dropdown-toggle" role="button">Gérer <span class="caret"></span></a>
+            <a class="dropdown-toggle" role="button">Gérer <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Enregistrer</a></li>
-              <li><a href="#">Télécharger</a></li>
+              <li><a style="cursor: pointer;">Enregistrer</a></li>
+              <li><a style="cursor: pointer;">Télécharger</a></li>
             </ul>
           </li>
         </ul>

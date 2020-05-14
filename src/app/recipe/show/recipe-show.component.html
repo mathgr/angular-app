@@ -1,44 +1,39 @@
-<div *ngIf="recipe; else infoText">
-  <div class="row">
-    <div class="col-xs-12">
-      <img [src]="recipe.imagePath" [alt]="recipe.name" class="img-responsive" style="max-height: 250px;">
-    </div>
+<div class="row">
+  <div class="col-xs-12">
+    <img [src]="recipe.imagePath" [alt]="recipe.name" class="img-responsive" style="max-height: 250px;">
   </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>{{ recipe.name }}</h1>
-    </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ recipe.name }}</h1>
   </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="btn-group" appDropdown>
-        <button type="button" class="btn btn-primary dropdown-toggle">
-          Gérer <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a (click)="addIngredientsToShoppingList()" style="cursor: pointer">Ajouter les ingrédients à la liste</a></li>
-          <li><a href="#">Éditer la recette</a></li>
-          <li><a href="#">Supprimer la recette</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      {{ recipe.description }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <ul class="list-group">
-        <li
-          class="list-group-item"
-          *ngFor="let ingredient of recipe.ingredients"
-        >{{ ingredient.name}} - {{ ingredient.amount }}</li>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group" appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">
+        Gérer <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a (click)="addIngredientsToShoppingList()" style="cursor: pointer">Ajouter les ingrédients à la liste</a></li>
+        <li><a [routerLink]="['/recipes', recipe.slug, 'edit']">Éditer la recette</a></li>
+        <li><a>Supprimer la recette</a></li>
       </ul>
     </div>
   </div>
 </div>
-<ng-template #infoText>
-  Merci de sélectionner une recette.
-</ng-template>
+<div class="row">
+  <div class="col-xs-12">
+    {{ recipe.description }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let ingredient of recipe.ingredients"
+      >{{ ingredient.name}} - {{ ingredient.amount }}</li>
+    </ul>
+  </div>
+</div>

@@ -4,10 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
-  selectedMenuItem: string = 'recipes';
-
-  onChangeSelectedMenuItem(menuItem: string): void {
-    this.selectedMenuItem = menuItem;
-  }
-}
+export class AppComponent {}

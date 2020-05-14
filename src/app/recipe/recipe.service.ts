@@ -5,8 +5,6 @@ import { Recipe } from './recipe.model';
 
 @Injectable({providedIn: 'root'})
 export class RecipeService {
-  selectedRecipe = new EventEmitter<Recipe>();
-
   private recipes: Array<Recipe> = [
     new Recipe(
       'Cheeseburger',
@@ -38,6 +36,12 @@ export class RecipeService {
 
   getRecipes(): Array<Recipe> {
     return this.recipes.slice();
+  }
+
+  getRecipeBySlug(slug: string): Recipe {
+    return this.recipes.find(
+      (recipe: Recipe) => recipe.slug === slug
+    );
   }
 
   addIngredientsToShoppingList(ingredients: Array<Ingredient>): void {

@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
 
 @Component({
-  selector: 'app-recipe-show',
-  templateUrl: './recipe-show.component.html',
+  selector: 'app-recipe-edit',
+  templateUrl: './recipe-edit.component.html',
 })
-export class RecipeShowComponent implements OnInit {
+export class RecipeEditComponent implements OnInit {
   recipe: Recipe;
+
+  get editMode(): boolean {
+    return this.recipe != null;
+  }
 
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService,
   ) {}
 
   ngOnInit() {
@@ -20,9 +22,5 @@ export class RecipeShowComponent implements OnInit {
       .subscribe(
         (data: Data) => this.recipe = data['recipe']
       );
-  }
-
-  addIngredientsToShoppingList() {
-    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
   }
 }
