@@ -1,32 +1,52 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" #ingredientForm="ngForm">
       <div class="row">
         <div class="col-sm-5 form-group">
-          <label for="name">Nom</label>
+          <label for="name">
+            Nom <span class="glyphicon-asterisk"></span>
+          </label>
           <input
             type="text"
             id="name"
             class="form-control"
-            #nameInput
+            ngModel name="name"
+            required
           >
         </div>
         <div class="col-sm-2 form-group">
-          <label for="amount">Montant</label>
+          <label for="amount">
+            Montant <span class="glyphicon-asterisk"></span>
+          </label>
           <input
             type="number"
             id="amount"
             class="form-control"
-            #amountInput
+            ngModel name="amount"
+            required
+            pattern="^[1-9]+[0-9]*$"
           >
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <div class="btn-group">
-            <button type="submit" class="btn btn-success">Ajouter</button>
-            <button type="button" class="btn btn-danger">Supprimer</button>
-            <button type="button" class="btn btn-primary">Effacer</button>
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="!ingredientForm.valid"
+            >{{ editMode ? 'Enregistrer' : 'Ajouter' }}</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="onDelete()"
+              [disabled]="!editMode"
+            >Supprimer</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="onReset()"
+            >Effacer</button>
           </div>
         </div>
       </div>

@@ -1,1 +1,108 @@
-<p>recipe on {{ editMode ? 'edit' : 'create' }} mode</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="recipe-name">Nom</label>
+            <input
+              id="recipe-name"
+              type="text"
+              class="form-control"
+              formControlName="recipeName"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="recipe-description">Description</label>
+            <textarea
+              id="recipe-description"
+              type="text"
+              class="form-control"
+              formControlName="recipeDescription"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="recipe-image-path">Url de l'image</label>
+            <input
+              id="recipe-image-path"
+              type="text"
+              class="form-control"
+              formControlName="recipeImagePath"
+              #recipeImagePath
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img [src]="recipeImagePath.value" class="img-responsive">
+        </div>
+      </div>
+      <div class="row">
+        <div
+          formArrayName="recipeIngredients"
+          class="col-xs-12 form-group"
+        >
+          <div
+            *ngFor="let ingredientControl of recipeIngredientsControls; let i = index;"
+            [formGroupName]="i"
+            class="row form-group"
+          >
+            <div class="col-xs-8">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+              >
+            </div>
+            <div class="col-xs-2">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="amount"
+              >
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="onDeleteIngredient(i)"
+              >x</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-right">
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="onAddIngredient()"
+              >Ajouter un ingrédient</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 btn-group">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!form.valid"
+          >{{ editMode ? 'Enregistrer' : 'Ajouter' }}</button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            [routerLink]="['..']"
+          >Annuler</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
