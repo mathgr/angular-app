@@ -13,8 +13,8 @@
           <li class="dropdown" appDropdown>
             <a class="dropdown-toggle" role="button">Gérer <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a style="cursor: pointer;">Enregistrer</a></li>
-              <li><a style="cursor: pointer;">Télécharger</a></li>
+              <li><a style="cursor: pointer;" (click)="onSaveData()">Enregistrer</a></li>
+              <li><a style="cursor: pointer;" (click)="onFetchRecipes()">Télécharger</a></li>
             </ul>
           </li>
         </ul>

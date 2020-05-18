@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RecipeEditComponent } from './recipe/edit/recipe-edit.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeResolver } from './recipe/recipe.resolver';
+import { RecipesResolver } from './recipe/recipes.resolver';
 import { RecipeShowDefaultComponent } from './recipe/show/recipe-show-default/recipe-show-default.component';
 import { RecipeShowComponent } from './recipe/show/recipe-show.component';
 import { ShoppingListComponent } from './shopping/list/shopping-list.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: 'recipes',
     component: RecipeComponent,
+    resolve: [RecipesResolver],
     children: [
       {
         path: '',
