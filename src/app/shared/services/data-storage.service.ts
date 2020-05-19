@@ -7,6 +7,7 @@ import { RecipeService } from '../../recipe/recipe.service';
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService {
+  readonly RECIPE_ENDPOINT = 'https://angular-recipe-app-889bb.firebaseio.com/recipes.json';
 
   constructor(
     private http: HttpClient,
@@ -15,13 +16,13 @@ export class DataStorageService {
 
   saveRecipes(): void {
     this.http
-      .put('https://angular-recipe-app-889bb.firebaseio.com/recipes.json', this.recipeService.getRecipes())
+      .put(this.RECIPE_ENDPOINT, this.recipeService.getRecipes())
       .subscribe();
   }
 
   fetchRecipes() {
     return this.http
-      .get<Array<Recipe>>('https://angular-recipe-app-889bb.firebaseio.com/recipes.json')
+      .get<Array<Recipe>>(this.RECIPE_ENDPOINT)
       .pipe(
         map(recipes => {
           return recipes.map(recipe => {

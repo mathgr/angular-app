@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 import { RecipeEditComponent } from './recipe/edit/recipe-edit.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeResolver } from './recipe/recipe.resolver';
@@ -17,6 +19,7 @@ const routes: Routes = [
   {
     path: 'recipes',
     component: RecipeComponent,
+    canActivate: [AuthGuard],
     resolve: [RecipesResolver],
     children: [
       {
@@ -46,6 +49,10 @@ const routes: Routes = [
   {
     path: 'shopping-list',
     component: ShoppingListComponent,
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
   },
 ]
 
